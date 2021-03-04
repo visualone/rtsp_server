@@ -7,5 +7,5 @@ ALLOWED_REMOTE_IP_ADDRESSES = ['127.0.0.1', '35.155.73.2']
 
 # A dict of camera ids and their RTSP urls.
 cameras = {
-    "WP6XcgtOr2": "rtsp://multipolar:t3rp999@192.168.0.102/live"
+    "WP6XcgtOr2": "rtsp://multipolar:t3rp999@192.168.0.106/live"
 }

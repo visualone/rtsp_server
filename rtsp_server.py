@@ -16,14 +16,18 @@ app.config['FRAMES_FOLDER'] = LATEST_FRAMES_FOLDER
 
 
 for camera_id in config.cameras:
-    subprocess.Popen([sys.executable, './save_rtsp_latest_frame.py'] + [camera_id] + [config.cameras[camera_id]],
+    subprocess.Popen([sys.executable, './save_rtsp_latest_frame.py'] 
+                    + [camera_id] 
+                    + [config.cameras[camera_id]]
+                    + [LATEST_FRAMES_FOLDER],
                          stdout=subprocess.PIPE, 
                          stderr=subprocess.STDOUT)
 
 @app.route('/frame2')
 def frame2():
   camera_id = request.args.get('camera_id')
-  return render_template("index.html", current_frame = "{}.jpg".format(camera_id) + "?" + str(time.time()) )
+  frame_file = os.path.join(app.config['FRAMES_FOLDER'], '{}.jpg'.format(camera_id))
+  return render_template("index.html", current_frame = frame_file + "?" + str(time.time()) )
 
 
 @app.route("/test")

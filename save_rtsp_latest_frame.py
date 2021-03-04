@@ -2,7 +2,8 @@ import cv2
 from PIL import Image
 import numpy as np
 import sys
-
+import time
+import os
 
 if  __name__ == '__main__':
     
@@ -10,6 +11,8 @@ if  __name__ == '__main__':
     
     rtsp_url = sys.argv[2]
 
+    frames_folder = sys.argv[3]
+    
     cap = cv2.VideoCapture(rtsp_url)
     
     while True:
@@ -17,5 +20,8 @@ if  __name__ == '__main__':
         ret, frame = cap.read()
         frame = frame[:, :, ::-1]
         im = Image.fromarray(frame)
-        im.save("{}.jpg".format(camera_id))
+        h, w = frame.shape[:2]
+        width = 1920 #int(request.args.get('width'))
+        im = im.resize((width, round(width / w * h)))
+        im.save(os.path.join(frames_folder, "{}.jpg".format(camera_id)))
         time.sleep(0.25)
