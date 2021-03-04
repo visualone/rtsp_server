@@ -8,6 +8,8 @@ import config
 import subprocess
 import sys
 
+from flask import send_file
+
 LATEST_FRAMES_FOLDER = os.path.join('static', 'latest_frames')
 
 app = Flask(__name__, static_url_path='/static')
@@ -29,6 +31,11 @@ def frame2():
   frame_file = os.path.join(app.config['FRAMES_FOLDER'], '{}.jpg'.format(camera_id))
   return render_template("index.html", current_frame = frame_file + "?" + str(time.time()) )
 
+@app.route('/get_image')
+def get_image():
+    camera_id = request.args.get('camera_id')
+    frame_file = os.path.join(app.config['FRAMES_FOLDER'], '{}.jpg'.format(camera_id))
+    return send_file(frame_file, mimetype='image/jpg')
 
 @app.route("/test")
 def test():
