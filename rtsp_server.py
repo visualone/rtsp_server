@@ -5,7 +5,8 @@ from PIL import Image
 import numpy as np
 import time
 import config
-
+import subprocess
+import sys
 
 LATEST_FRAMES_FOLDER = os.path.join('static', 'latest_frames')
 
@@ -14,9 +15,15 @@ app = Flask(__name__, static_url_path='/static')
 app.config['FRAMES_FOLDER'] = LATEST_FRAMES_FOLDER
 
 
-vcs = {}
-for cam in config.cameras:
-    vcs[cam] = cv2.VideoCapture(config.cameras[cam])
+for camera_id in config.cameras:
+    subprocess.Popen([sys.executable, './save_rtsp_latest_frame.py'] + [camera_id],
+                         stdout=subprocess.PIPE, 
+                         stderr=subprocess.STDOUT)
+
+@app.route('/frame2')
+def frame2():
+  camera_id = request.args.get('camera_id')
+  return render_template("index.html", current_frame = "{}.jpg".format(camera_id) + "?" + str(time.time()) )
 
 
 @app.route("/test")
