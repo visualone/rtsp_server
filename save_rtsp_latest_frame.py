@@ -1,13 +1,16 @@
 import cv2
 from PIL import Image
 import numpy as np
+import sys
 
 
 if  __name__ == '__main__':
     
     camera_id = sys.argv[1]
+    
+    rtsp_url = sys.argv[2]
 
-    cap = cv2.VideoCapture(camera_id)
+    cap = cv2.VideoCapture(rtsp_url)
     
     while True:
         cap.set(cv2.CAP_PROP_POS_FRAMES, -1)

@@ -16,7 +16,7 @@ app.config['FRAMES_FOLDER'] = LATEST_FRAMES_FOLDER
 
 
 for camera_id in config.cameras:
-    subprocess.Popen([sys.executable, './save_rtsp_latest_frame.py'] + [camera_id],
+    subprocess.Popen([sys.executable, './save_rtsp_latest_frame.py'] + [camera_id] + [config.cameras[camera_id]],
                          stdout=subprocess.PIPE, 
                          stderr=subprocess.STDOUT)
 
