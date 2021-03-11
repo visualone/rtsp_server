@@ -16,12 +16,16 @@ if  __name__ == '__main__':
     cap = cv2.VideoCapture(rtsp_url)
     
     while True:
-        cap.set(cv2.CAP_PROP_POS_FRAMES, -1)
-        ret, frame = cap.read()
-        frame = frame[:, :, ::-1]
-        im = Image.fromarray(frame)
-        h, w = frame.shape[:2]
-        width = 1920 #int(request.args.get('width'))
-        im = im.resize((width, round(width / w * h)))
-        im.save(os.path.join(frames_folder, "{}.jpg".format(camera_id)))
-        time.sleep(0.25)
+        try:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, -1)
+            ret, frame = cap.read()
+            frame = frame[:, :, ::-1]
+            im = Image.fromarray(frame)
+            h, w = frame.shape[:2]
+            width = 1080
+            im = im.resize((width, round(width / w * h)))
+            im.save(os.path.join(frames_folder, "{}.jpg".format(camera_id)))
+            time.sleep(0.5)
+        except:
+            print("an error occured while saving a frame.")
+            continue
