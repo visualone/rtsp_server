@@ -1,0 +1,6 @@
+[h264 @ 0xd6ca20] cabac decode of qscale diff failed at 73 6
+[h264 @ 0xd6ca20] error while decoding MB 73 6, bytestream 43
+
+
+34.222.186.125 - - [22/Mar/2021 03:42:55] code 400, message Bad request version ("Ìâu\x99ûåjhrH\x05=Ü¢à\x04kÕ´#ë\x88P\x90$\x03+ÁL\x0e\x1b6\x00>\x13\x02\x13\x03\x13\x01À,À0\x00\x9fÌ©Ì¨ÌªÀ+À/\x00\x9eÀ$À(\x00kÀ#À'\x00gÀ")
+34.222.186.125 - - [22/Mar/2021 03:42:55] " ÜgÚ_è|ø{î¥1>ÁËÃ{±ÂP�+s ÌâuûåjhrH=Ü¢àkÕ´#ëP>À,À0pi@raspberrypi:~/rtsp_server $ 

@@ -28,7 +28,7 @@ for camera_id in config.cameras:
     
 @app.route("/test")
 def test():
-    return "The RTSP server is running!\n"
+    return "The RTSP server is running 2!\n"
 
 
 @app.route('/get_image')
